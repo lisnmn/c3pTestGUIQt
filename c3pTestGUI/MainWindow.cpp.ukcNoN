@@ -13,12 +13,11 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    LibOSEM libOSEM;
-//    QLibrary qLib("./liblibOSEM");
-//    if(qLib.load()) {
-//        qDebug() << "Library OSEMOld loaded";
-//        LibOSEM libOSEM;
-//    }
+    QLibrary qLib("./liblibOSEM");
+    if(qLib.load()) {
+        qDebug() << "Library OSEMOld loaded";
+        LibOSEM libOSEM;
+    }
     ui->setupUi(this);
 }
 

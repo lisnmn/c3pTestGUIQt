@@ -2,7 +2,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++14
+CONFIG += c++14 console
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -20,6 +20,11 @@ QMAKE_CXXFLAGS_RELEASE += -O3 -Wall
 # 添加dl库
 LIBS += -ldl
 
+# 添加采集算法库
+unix|win32: LIBS += -L$$PWD/lib/ -llibOSEM
+INCLUDEPATH += $$PWD/include
+DEPENDPATH += $$PWD/include
+
 SOURCES += \
     main.cpp \
     MainWindow.cpp \
@@ -30,6 +35,7 @@ SOURCES += \
 
 HEADERS += \
     MainWindow.h \
+    include/libosem.h \
     util/PluginManager.h \
     util/abstract_plugin.h \
     util/dynamicUI.h \

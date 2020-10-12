@@ -17,7 +17,7 @@ CXX           = g++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++1y -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../c3pTestGUI -I. -I../../../Qt5.14.2/5.14.2/gcc_64/include -I../../../Qt5.14.2/5.14.2/gcc_64/include/QtWidgets -I../../../Qt5.14.2/5.14.2/gcc_64/include/QtGui -I../../../Qt5.14.2/5.14.2/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../c3pTestGUI -I. -I../c3pTestGUI/include -I../../../Qt5.14.2/5.14.2/gcc_64/include -I../../../Qt5.14.2/5.14.2/gcc_64/include/QtWidgets -I../../../Qt5.14.2/5.14.2/gcc_64/include/QtGui -I../../../Qt5.14.2/5.14.2/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/svf/Qt5.14.2/5.14.2/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = c3pTestGUI1.0.0
 DISTDIR = /home/svf/QtProject/c3pTestGUIQt/build-c3pTestGUI-Desktop_Qt_5_14_2_GCC_64bit-Debug/.tmp/c3pTestGUI1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/svf/Qt5.14.2/5.14.2/gcc_64/lib
-LIBS          = $(SUBLIBS) -ldl /home/svf/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Widgets.so /home/svf/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Gui.so /home/svf/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) -ldl -L/home/svf/QtProject/c3pTestGUIQt/c3pTestGUI/lib/ -llibOSEM /home/svf/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Widgets.so /home/svf/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Gui.so /home/svf/Qt5.14.2/5.14.2/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -103,16 +103,11 @@ DIST          = ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_accessibility_support_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_bluetooth.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_bluetooth_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_bodymovin_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_bootstrap_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_charts.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_charts_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_concurrent.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_concurrent_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_core.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_core_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_datavisualization.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_datavisualization_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_dbus.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_dbus_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_designer.pri \
@@ -145,8 +140,6 @@ DIST          = ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_network.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_network_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_networkauth.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_networkauth_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_nfc.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_nfc_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_opengl.pri \
@@ -161,8 +154,6 @@ DIST          = ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_positioningquick_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_printsupport.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_printsupport_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_purchasing.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_purchasing_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qml.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qml_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qmldebug_private.pri \
@@ -175,16 +166,6 @@ DIST          = ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qmlworkerscript_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3d.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3d_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3dassetimport.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3dassetimport_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3drender.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3drender_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3dutils.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3dutils_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quickcontrols2.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
@@ -198,10 +179,6 @@ DIST          = ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_remoteobjects_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_repparser.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_repparser_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_script.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_script_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_scripttools.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_scripttools_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_scxml.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_scxml_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_sensors.pri \
@@ -223,13 +200,9 @@ DIST          = ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_uiplugin.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_uitools.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_uitools_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_virtualkeyboard.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_virtualkeyboard_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_vulkan_support_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_waylandclient.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_waylandclient_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_waylandcompositor.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_waylandcompositor_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_webchannel.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_webchannel_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_websockets.pri \
@@ -272,6 +245,7 @@ DIST          = ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/features/lex.prf \
 		../c3pTestGUI/c3pTestGUI.pro ../c3pTestGUI/MainWindow.h \
+		../c3pTestGUI/include/libosem.h \
 		../c3pTestGUI/util/PluginManager.h \
 		../c3pTestGUI/util/abstract_plugin.h \
 		../c3pTestGUI/util/dynamicUI.h \
@@ -330,16 +304,11 @@ Makefile: ../c3pTestGUI/c3pTestGUI.pro ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/l
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_accessibility_support_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_bluetooth.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_bluetooth_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_bodymovin_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_bootstrap_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_charts.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_charts_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_concurrent.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_concurrent_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_core.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_core_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_datavisualization.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_datavisualization_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_dbus.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_dbus_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_designer.pri \
@@ -372,8 +341,6 @@ Makefile: ../c3pTestGUI/c3pTestGUI.pro ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/l
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_network.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_network_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_networkauth.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_networkauth_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_nfc.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_nfc_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_opengl.pri \
@@ -388,8 +355,6 @@ Makefile: ../c3pTestGUI/c3pTestGUI.pro ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/l
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_positioningquick_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_printsupport.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_printsupport_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_purchasing.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_purchasing_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qml.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qml_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qmldebug_private.pri \
@@ -402,16 +367,6 @@ Makefile: ../c3pTestGUI/c3pTestGUI.pro ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/l
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qmlworkerscript_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3d.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3d_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3dassetimport.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3dassetimport_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3drender.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3drender_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3dutils.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3dutils_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quickcontrols2.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
@@ -425,10 +380,6 @@ Makefile: ../c3pTestGUI/c3pTestGUI.pro ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/l
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_remoteobjects_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_repparser.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_repparser_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_script.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_script_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_scripttools.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_scripttools_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_scxml.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_scxml_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_sensors.pri \
@@ -450,13 +401,9 @@ Makefile: ../c3pTestGUI/c3pTestGUI.pro ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/l
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_uiplugin.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_uitools.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_uitools_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_virtualkeyboard.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_virtualkeyboard_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_vulkan_support_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_waylandclient.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_waylandclient_private.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_waylandcompositor.pri \
-		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_waylandcompositor_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_webchannel.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_webchannel_private.pri \
 		../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_websockets.pri \
@@ -536,16 +483,11 @@ Makefile: ../c3pTestGUI/c3pTestGUI.pro ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/l
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_accessibility_support_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_bluetooth.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_bluetooth_private.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_bodymovin_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_bootstrap_private.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_charts.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_charts_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_concurrent.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_concurrent_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_core.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_core_private.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_datavisualization.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_datavisualization_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_dbus.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_dbus_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_designer.pri:
@@ -578,8 +520,6 @@ Makefile: ../c3pTestGUI/c3pTestGUI.pro ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/l
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_network.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_network_private.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_networkauth.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_networkauth_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_nfc.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_nfc_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_opengl.pri:
@@ -594,8 +534,6 @@ Makefile: ../c3pTestGUI/c3pTestGUI.pro ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/l
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_positioningquick_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_printsupport.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_printsupport_private.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_purchasing.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_purchasing_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qml.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qml_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qmldebug_private.pri:
@@ -608,16 +546,6 @@ Makefile: ../c3pTestGUI/c3pTestGUI.pro ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/l
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qmlworkerscript_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3d.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3d_private.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3dassetimport.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3dassetimport_private.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3drender.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3drender_private.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender_private.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3dutils.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick3dutils_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quick_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quickcontrols2.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri:
@@ -631,10 +559,6 @@ Makefile: ../c3pTestGUI/c3pTestGUI.pro ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/l
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_remoteobjects_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_repparser.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_repparser_private.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_script.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_script_private.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_scripttools.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_scripttools_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_scxml.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_scxml_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_sensors.pri:
@@ -656,13 +580,9 @@ Makefile: ../c3pTestGUI/c3pTestGUI.pro ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/l
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_uiplugin.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_uitools.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_uitools_private.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_virtualkeyboard.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_virtualkeyboard_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_vulkan_support_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_waylandclient.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_waylandclient_private.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_waylandcompositor.pri:
-../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_waylandcompositor_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_webchannel.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_webchannel_private.pri:
 ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/modules/qt_lib_websockets.pri:
@@ -720,7 +640,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt5.14.2/5.14.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../c3pTestGUI/MainWindow.h ../c3pTestGUI/util/PluginManager.h ../c3pTestGUI/util/abstract_plugin.h ../c3pTestGUI/util/dynamicUI.h ../c3pTestGUI/util/inifile.h ../c3pTestGUI/util/library.h ../c3pTestGUI/util/plugin.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../c3pTestGUI/MainWindow.h ../c3pTestGUI/include/libosem.h ../c3pTestGUI/util/PluginManager.h ../c3pTestGUI/util/abstract_plugin.h ../c3pTestGUI/util/dynamicUI.h ../c3pTestGUI/util/inifile.h ../c3pTestGUI/util/library.h ../c3pTestGUI/util/plugin.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../c3pTestGUI/main.cpp ../c3pTestGUI/MainWindow.cpp ../c3pTestGUI/util/PluginManager.cpp ../c3pTestGUI/util/dynamicUI.cpp ../c3pTestGUI/util/inifile.cpp ../c3pTestGUI/util/library.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../c3pTestGUI/MainWindow.ui $(DISTDIR)/
 
@@ -880,7 +800,7 @@ moc_MainWindow.cpp: ../c3pTestGUI/MainWindow.h \
 		../c3pTestGUI/util/library.h \
 		moc_predefs.h \
 		../../../Qt5.14.2/5.14.2/gcc_64/bin/moc
-	/home/svf/Qt5.14.2/5.14.2/gcc_64/bin/moc $(DEFINES) --include /home/svf/QtProject/c3pTestGUIQt/build-c3pTestGUI-Desktop_Qt_5_14_2_GCC_64bit-Debug/moc_predefs.h -I/home/svf/Qt5.14.2/5.14.2/gcc_64/mkspecs/linux-g++ -I/home/svf/QtProject/c3pTestGUIQt/c3pTestGUI -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include/QtGui -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../c3pTestGUI/MainWindow.h -o moc_MainWindow.cpp
+	/home/svf/Qt5.14.2/5.14.2/gcc_64/bin/moc $(DEFINES) --include /home/svf/QtProject/c3pTestGUIQt/build-c3pTestGUI-Desktop_Qt_5_14_2_GCC_64bit-Debug/moc_predefs.h -I/home/svf/Qt5.14.2/5.14.2/gcc_64/mkspecs/linux-g++ -I/home/svf/QtProject/c3pTestGUIQt/c3pTestGUI -I/home/svf/QtProject/c3pTestGUIQt/c3pTestGUI/include -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include/QtGui -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../c3pTestGUI/MainWindow.h -o moc_MainWindow.cpp
 
 moc_dynamicUI.cpp: ../c3pTestGUI/util/dynamicUI.h \
 		../../../Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QBoxLayout \
@@ -994,7 +914,7 @@ moc_dynamicUI.cpp: ../c3pTestGUI/util/dynamicUI.h \
 		../c3pTestGUI/util/inifile.h \
 		moc_predefs.h \
 		../../../Qt5.14.2/5.14.2/gcc_64/bin/moc
-	/home/svf/Qt5.14.2/5.14.2/gcc_64/bin/moc $(DEFINES) --include /home/svf/QtProject/c3pTestGUIQt/build-c3pTestGUI-Desktop_Qt_5_14_2_GCC_64bit-Debug/moc_predefs.h -I/home/svf/Qt5.14.2/5.14.2/gcc_64/mkspecs/linux-g++ -I/home/svf/QtProject/c3pTestGUIQt/c3pTestGUI -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include/QtGui -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../c3pTestGUI/util/dynamicUI.h -o moc_dynamicUI.cpp
+	/home/svf/Qt5.14.2/5.14.2/gcc_64/bin/moc $(DEFINES) --include /home/svf/QtProject/c3pTestGUIQt/build-c3pTestGUI-Desktop_Qt_5_14_2_GCC_64bit-Debug/moc_predefs.h -I/home/svf/Qt5.14.2/5.14.2/gcc_64/mkspecs/linux-g++ -I/home/svf/QtProject/c3pTestGUIQt/c3pTestGUI -I/home/svf/QtProject/c3pTestGUIQt/c3pTestGUI/include -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include/QtWidgets -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include/QtGui -I/home/svf/Qt5.14.2/5.14.2/gcc_64/include/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../c3pTestGUI/util/dynamicUI.h -o moc_dynamicUI.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1268,7 +1188,19 @@ MainWindow.o: ../c3pTestGUI/MainWindow.cpp ../c3pTestGUI/MainWindow.h \
 		../c3pTestGUI/util/plugin.h \
 		../c3pTestGUI/util/abstract_plugin.h \
 		../c3pTestGUI/util/library.h \
-		ui_MainWindow.h
+		ui_MainWindow.h \
+		../../../Qt5.14.2/5.14.2/gcc_64/include/QtCore/QLibrary \
+		../../../Qt5.14.2/5.14.2/gcc_64/include/QtCore/qlibrary.h \
+		../../../Qt5.14.2/5.14.2/gcc_64/include/QtCore/QDebug \
+		../../../Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/QMessageBox \
+		../../../Qt5.14.2/5.14.2/gcc_64/include/QtWidgets/qmessagebox.h \
+		../c3pTestGUI/include/libosem.h \
+		../c3pTestGUI/include/libOSEM_global.h \
+		../c3pTestGUI/include/UPETScanner.h \
+		../c3pTestGUI/include/UVolume.h \
+		../c3pTestGUI/include/UReconPETOSEMAlgor.h \
+		../c3pTestGUI/include/UProgressNotify.h \
+		../c3pTestGUI/include/UImage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o ../c3pTestGUI/MainWindow.cpp
 
 PluginManager.o: ../c3pTestGUI/util/PluginManager.cpp ../c3pTestGUI/util/PluginManager.h \

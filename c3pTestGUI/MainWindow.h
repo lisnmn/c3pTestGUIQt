@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QDialog>
+
 #include <atomic>
 
 #include "./util/dynamicUI.h"
@@ -25,5 +26,7 @@ private slots:
     
 private:
     Ui::MainWindow *ui;
+    PluginManager pluginManager;
+    std::atomic<bool> isReconRunning;
 };
 #endif // MAINWINDOW_H
